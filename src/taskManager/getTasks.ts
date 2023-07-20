@@ -1,6 +1,10 @@
 import { getStoredTasks } from "./getStoredTasks";
 import { Filter, Task } from "../types";
 
+function parseDateFromJSON(jsonDate: any): Date {
+  return new Date(jsonDate);
+}
+
 export function getTasks(filter: Filter): Promise<Task[]> {
   const tasks = getStoredTasks();
   console.log('tasks', tasks);
@@ -12,7 +16,7 @@ export function getTasks(filter: Filter): Promise<Task[]> {
       matched = false;
     }
 
-    if (filter.date && task.createDate !== filter.date) {
+    if (filter.date && (parseDateFromJSON(task.createDate) as Date).getTime() !== filter.date.getTime()) {
       matched = false;
     }
 

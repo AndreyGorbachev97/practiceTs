@@ -8,6 +8,14 @@ export interface Task {
   status: StatusType;
 }
 
+export interface TaskStored {
+  id: string;
+  createDate: string;
+  description: string;
+  title: string;
+  status: StatusType;
+}
+
 export interface Filter {
   status: StatusType;
   date: Date;
